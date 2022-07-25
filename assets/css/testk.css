@@ -1,0 +1,1017 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif&family=Poppins:ital,wght@0,200;1,200&family=Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif&family=Poppins:ital,wght@0,200;1,200&family=Roboto+Condensed&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+.container{
+    position: relative;
+    width: 100%;
+}
+
+.navigation{
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    background-color: #ffffff;
+    overflow:hidden;
+    transition: 0.5s;
+}
+
+.navigation .brand{
+    background-color: #24292D;
+}
+.navigation .brand a .title{
+    font-size: 20px;
+    color: #eee6e6;
+    line-height: 20px;
+}
+
+.navigation .brand a:hover{
+    background-color: #24292D;
+}
+
+.navigation.active{
+    width: 60px;
+    transition: 0.5s;
+}
+
+.navigation ul{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.navigation ul li{
+    position: relative;
+    width: 100%;
+    list-style: none;
+}
+
+.navigation ul li:hover{
+    background-color: #00adef;
+}
+
+.navigation ul li:nth-child(1){
+    margin-bottom: 20px;
+}
+
+.navigation ul li:nth-child(1):hover{
+    background: transparent;
+}
+
+.navigation ul li a{
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: white;
+}
+
+.navigation ul li a .icon{
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+}
+
+.navigation ul li a .icon .fas,.navigation ul li a .icon .far{
+    color: rgb(36, 36, 36);
+    font-size: 24px;
+}
+
+.navigation ul li a .icon .fas:hover,.navigation ul li a .icon .far:hover{
+    color: #24292D;
+}
+
+.navigation ul li a .title{
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    color: #24292D;
+    line-height: 60px;
+    white-space: nowrap;
+}
+
+
+.dropdown-buku {
+    display: none;
+}
+
+.dropdown-buku span{
+    color: #24292D;
+}
+
+.dropdown-buku span:hover{
+    color: #00adef;
+    padding: 0;
+}
+
+.dropdown-buku.dropdown-active {
+    display: block;
+    color: #24292D;
+    background-color: #fff;
+    padding-left: 60px;
+}
+
+
+.dropdown-pinjam {
+    display: none;
+}
+
+.dropdown-pinjam span{
+    color: #24292D;
+}
+
+.dropdown-pinjam.dropdown-active {
+    display: block;
+    
+    background-color: #f5f5f5;
+    padding-left: 60px;
+}
+
+.icon img{
+    margin-top: 12px;
+    width: 42px;
+}
+
+.main{
+    position: absolute;
+    width: calc(100% - 300px);
+    left: 300px;
+    min-height: 100vh;
+    background: #f5f5f5;
+    transition: 0.5s;
+}
+
+.main.active{
+    width: calc(100% - 60px);
+    left: 60px;
+    transition: 0.5s;
+}
+
+.main .topbar{
+    width: 100%;
+    background: white;
+    height: 60px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.5s;
+}
+
+
+.toggle{
+    position: relative;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    line-height: 55px;
+    padding-left: 5px;
+    font-size: 24px;
+}
+
+
+
+.user{
+    position: relative;
+    min-width: 50px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.user img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cardBox{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 20px;
+}
+
+.cardBox .card{
+    position: relative;
+    background-color: #fff;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.cardBox .card .number{
+    position: relative;
+    font-size: 2em;
+    font-weight: 500;
+}
+
+.cardBox .card .cardName{
+    color: #999;
+} 
+
+.cardBox .card .iconBox{
+    font-size: 2.5em;
+}
+
+.iconAnggota i{
+    color: #999;
+}
+
+.iconBuku i{
+    color: #00adef;
+}
+
+.iconBukuBelumKembali i{
+    color: #ef0014;
+}
+
+.iconDenda i{
+    color: #00ef34;
+}
+
+#search-box{
+    position:relative;
+    width:40%;
+    margin:20px 20px;}
+#search-form{
+    height:40px;
+    border:1px solid #999;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+    background-color:#fff;
+    overflow:hidden}
+#search-text{
+    font-size:14px;
+    color:#ddd;
+    border-width:0;
+    background:transparent}
+#search-box input[type="text"]{
+    width:90%;
+    padding:11px 0 12px 1em;
+    color:#333;
+    outline:none}
+#search-button{
+    position:absolute;
+    top:0;
+    right:0;
+    height:39px;
+    width:80px;font-size:25px;
+    color:#fff;
+    text-align:
+    center;
+    line-height:42px;
+    border-width:0;
+    background-color:#4d90fe;
+    -webkit-border-radius:0 5px 5px 0;
+    -moz-border-radius:0 5px 5px 0;
+    border-radius:0 5px 5px 0;
+    cursor:pointer
+}
+
+.table{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    padding-top: 0;
+    /* display: grid; */
+    
+}
+
+.table .card-table{
+    position: relative;
+    /* display: grid; */
+    min-height: 530px;
+    background: #fff;
+    padding: 20px;
+}
+
+.cardHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.cardHeader h2{
+    font-weight: 600;
+}
+
+.btn{
+    position: relative;
+    padding: 5px 10px;
+    background-color: #00adef;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.table table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.table table thead td{
+    font-weight: 600;
+    padding: 2px;
+}
+
+.table .card-table table tr{
+    border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+}
+
+.table .card-table table tbody tr:last-child{
+    border-bottom: none;
+}
+
+.table .card-table table tbody tr:hover{
+    background-color: #00adef;
+    color: #fff;
+}
+
+.table .card-table table tr td{
+    padding: 9px 5px;
+}
+
+/* .table .card-table table tr td:last-child{
+    text-align: right;
+}
+
+.table .card-table table tr td:nth-child(2){
+    text-align: right;
+    padding-right: 20px;
+}
+
+.table .card-table table tr td:nth-child(3){
+    text-align: center;
+} */
+
+.statusBelum{
+    position: relative;
+    padding: 2px 4px;
+    background-color: #ef0014;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.hapus,.edit,.lihat-detail{
+    color: #fff;
+    border-radius: 10px;
+    padding: 2px 10px;
+    cursor: pointer;
+}
+
+.hapus:hover,.edit:hover,.lihat-detail:hover{
+    background-color: #24292D;
+}
+
+.edit{
+    background-color: #15ce68;
+}
+
+.hapus{
+    background-color: #ef0014;
+}
+
+.lihat-detail{
+    background-color: #d4e20d;
+}
+
+/* Pagination */
+.pagination {
+    margin: 25px 0 15px 0;
+}
+.pagination,
+.pagination li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.pagination li {
+    background: #4d90fe;
+    list-style: none;
+}
+.pagination li a{
+    text-decoration: none;
+    color: #fdfdfd;
+    height: 30px;
+    width: 50px;
+    font-size: 18px;
+    padding-top: 1px;
+    border: 2px solid #fdfdfd;
+    border-right-width: 0px;
+    box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.35);
+}
+
+.pagination .active a{
+    background-color: #696969;
+}
+.pagination li:last-child a {
+    border-right-width: 1px;
+}
+.pagination li a:hover {
+    background: #696969;
+    /* border-top-color: rgba(0, 0, 0, 0.35);
+    border-bottom-color: rgba(0, 0, 0, 0.5); */
+}
+.pagination li a:focus,
+.pagination li a:active {
+    padding-top: 4px;
+    border-left-width: 1px;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: inset 0px 2px 1px 0px rgba(0, 0, 0, 0.25);
+}
+.pagination li.icon a {
+    min-width: 120px;
+}
+.pagination li:first-child span {
+    padding-right: 8px;
+}
+.pagination li:last-child span {
+    padding-left: 8px;
+}
+
+.deskripsi{
+    padding: 20px 0;
+    background-color: #24292D;
+    display: flex;
+    justify-content: center;
+}
+
+.address{
+    color: white;
+    padding-right: 180px;
+}
+
+.address p{
+    color: white;
+    text-align: left;
+    padding: 0;
+}
+
+.social-media{
+    color:white;
+    padding-left: 180px;
+}
+
+.social-media i{
+    padding-right: 20px;
+    color: #00adef;
+    font-size: 50px;
+    
+}
+
+.deskripsi-img{
+    overflow: hidden;
+    width: 0;
+    height: 0;
+}
+
+.print, .excel{
+    position: relative;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.print a{
+    border-radius: 10px;
+    background-color: #00adef;
+    text-decoration: none;
+    padding: 5px 10px;
+    color: white;
+    font-size: 18px;
+}
+
+.excel a{
+    border-radius: 10px;
+    background-color: #00ef34;
+    text-decoration: none;
+    padding: 5px 10px;
+    color: white;
+    font-size: 18px;
+    }
+
+    .print button{
+        margin-top: 20px;
+        border-radius: 10px;
+    background-color: #00adef;
+    text-decoration: none;
+    padding: 5px 10px;
+    color: white;
+    font-size: 18px;
+    }
+
+    .excel button{
+        border-radius: 10px;
+    background-color: #308d44;
+    text-decoration: none;
+    padding: 5px 10px;
+    color: white;
+    font-size: 18px;
+    }
+
+    .bulan-tahun{
+        display:flex;
+        flex-direction: column;
+    }
+
+    .cari-laporan select{
+        width: 20pc;
+        border: none;
+        font-size: 20px;    
+    }
+
+.print a:hover, .print a:hover{
+    background-color: #696969;
+}
+
+footer{
+    background-color: #eee6e6;
+}
+
+footer p{
+    /* background-color: #c5c5c5; */
+    text-align: center;
+    padding: 10px 0;
+}
+
+.card-detail{
+    /* height: 400px; */
+    margin: 20px;
+    line-height: 30px;
+    display: flex;
+}
+
+.button-kembali a{
+    width: 40px;
+    text-decoration: none;
+    font-size: 20px;
+    background-color: #c4051f;
+    color: #fff;
+    padding: 5px 10px;
+}
+
+.button-kembali a:hover{
+    background-color: #24292D;
+}
+
+.button-kembali{
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.card-detail h2{
+    border-radius: 10px;
+    background-color: #00ef34;
+    text-decoration: none;
+    padding: 5px 10px;
+    color: white;
+    font-size: 18px;
+}
+
+.detail{
+    margin-left: 20px;
+    font-size: 18px;
+}
+
+.card-detail-img{
+    margin-bottom: 5px;
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+}
+
+.card-detail-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.cariAnggota,.cariBuku{
+    display: flex;
+    margin-top: 20px;
+}
+
+.cari-nis-nip form input[type="text"],.cari-nama form input[type="text"],.cari-nis-nip form input[type="email"]{
+    padding: 2px 5px;
+    outline: none;
+    width: 300px;
+    height: 30px;
+}
+
+.cari-nis-nip form input[type="submit"],.cari-nama form input[type="submit"] , .btn-kembali{
+    padding: 4px 20px;
+    color: white;
+    font-size: 17px;
+    background-color: #00adef;
+    border: none;
+}
+.btn-kembali{
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.cari-nis-nip form input[type="submit"]:hover, .btn-kembali:hover{
+    color: white;
+    background-color: #494949;
+    cursor: pointer;
+}
+
+.cariAnggota table th,
+.cariAnggota table td,
+.cariBuku table th,
+.cariBuku table td,
+.input-transaksi th,
+.input-transaksi td{
+    text-align: center;
+    padding: 20px;
+    border: #646464 1px solid;
+}
+
+.table-anggota, .table-buku{
+    margin-top: -10px;
+    margin-left: 100px;
+}
+
+.table-anggota table th,.table-buku table th{
+    padding: 5px 10px;
+    background-color: #00adef;
+}
+
+.table-anggota table td,
+.table-buku table td{
+    padding: 5px 10px;
+}
+
+.table-anggota a i,
+.table-buku a i{
+    text-align: center;
+    color: tomato;
+}
+
+.input-transaksi th{
+    background-color: #00adef;
+}
+
+.input-transaksi table{
+    max-width: 60pc;
+    overflow-x: scroll;
+    margin-top: 20px;
+}
+
+input[name="btn_pinjam_buku"]{
+    margin-top: 20px;
+    font-size: 20px;
+    padding: 3px 5px;
+    color: black;
+    border-radius: 5px;
+    border: none;
+    background-color: #00adef;
+}
+
+input[name="btn_pinjam_buku"]:hover{
+    color: white;
+    cursor: pointer;
+    background-color: #494949;
+}
+
+.cari-nama input[name="cari_buku"]:hover{
+    background-color: #494949;
+}
+
+input[name="cari_buku"], input[value="Cari Anggota"]{
+    margin-top: 10px;
+}
+
+.refresh{
+    text-decoration: none;
+    margin-top: 20px;
+    font-size: 20px;
+    padding: 3px 5px;
+    color: black;
+    border-radius: 5px;
+    border: none;
+    background-color: #00ef3c;
+}
+
+.refresh:hover,.excel a:hover{
+    color: white;
+    cursor: pointer;
+    background-color: #494949;
+}
+
+.pengaturan{
+    display: flex;
+}
+
+.pengaturan a p{
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+.pengaturan a {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: #24292D;
+}
+
+.pengaturan a i{
+    font-size: 40px;
+    margin-left: 20px;
+}
+
+.pengaturan a:hover{
+    color: #00adef;
+}
+
+.judul_pengaturan{
+    font-size: 30px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+
+.form-informasi label{
+    font-size: 18px;
+}
+  
+.form-informasi input{
+    border: #24292D 2px solid;
+    border-radius: 5px;
+    height: 35px;
+    outline: none;
+}
+
+.form-informasi form #judul{
+    width: 60%;
+    padding: 0 10px;
+}
+
+.form-informasi button, .form-informasi a{
+    background-color: #00adef;
+    border-radius: 5px;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.form-informasi button{
+    padding: 5px 10px;
+}
+
+.form-informasi a{
+    color: #24292D;
+    text-decoration: none;
+    padding: 6px 10px;
+}
+
+.form-informasi #gambar{
+    border: none;
+}
+
+.aksi_pinjam{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+}
+
+.buku_dikembalikan{
+    background-color: #1abd2f;
+    color: white;
+    padding: 3px 5px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
+
+.hapus-pinjam{
+    width: 35px;
+}
+
+.form-informasi a:hover{
+    color: #fff;
+    background-color: #770606;
+    text-decoration: none;
+    padding: 6px 10px;
+}
+
+.form-informasi #waktu_pembuatan{
+    padding-left: 5px;
+}
+
+.form-informasi button:hover{
+    background-color: #24292D;
+    color: white;
+}
+
+@media (max-width:992px){
+    .cardBox{
+        grid-template-columns: repeat(2,1fr);
+    }
+    .cariAnggota, .cariBuku{
+        display: block;
+    }
+
+    .table-anggota,.table-buku{
+        margin-top: 20px;
+        margin-left: 0px;
+    }
+    .table .card-table,.table{
+        overflow-x: scroll;
+    }
+}
+
+@media (max-width: 768px){
+    .cardHeader h2{
+        font-weight: 600;
+        font-size: 18px;
+    }
+
+    .address{
+        margin-left: 170px;
+    }
+    .deskripsi{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .social-media{
+        margin-left: -10px;
+    }
+}
+
+@media (max-width :662px){
+    .cardBox{
+        grid-template-columns: repeat(1,1fr);
+    }
+    .main.active .cardBox{
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .main #search-box{
+        display: none;
+    }
+
+    .main.active #search-box{
+        display: block;
+        width: 80%;
+    }
+
+    .main .print{
+        display:none;
+    }
+
+    .main.active .print{
+        display: block;
+    }
+
+
+    .main .excel{
+        display:none;
+    }
+
+    .main.active .excel{
+        display: block;
+    }
+
+    .cardHeader{
+        width: 600px;
+    }
+
+    .table .card-table,.table{
+        overflow-x: scroll;
+    }
+    
+    .pager{
+        width: 600px;
+    }
+
+    .cariAnggota{
+        display: block;
+    }
+}
+
+@media (max-width:880px){
+    .table .card-table table{
+        width: 600px;
+    }
+
+    .card-table h2{
+        width: 600px;
+    }
+
+    /* .main #search-box{
+        display: none;
+    } */
+
+    .main.active #search-box{
+        display: block;
+        width: 80%;
+    }
+
+    .cardHeader{
+        width: 600px;
+    }
+
+    .table .card-table,.table-anggota .table-anggota{
+        overflow-x: auto;
+    }
+    
+    .pager{
+        width: 600px;
+    }
+}
+
+@media (max-width: 480px){
+    .cardBox{
+        grid-template-columns: repeat(1,1fr);
+    }
+
+    .main.active .cardBox{
+        grid-template-columns: repeat(1,1fr);
+    }
+    
+    .main #search-box{
+        display: none;
+    }
+
+    .main.active #search-box{
+        display: block;
+        width: 80%;
+    }
+
+    .table .card-table{
+        overflow:auto ;
+    } 
+
+    .main .print{
+        display:none;
+    }
+
+    .main.active .print{
+        display: block;
+    }
+
+    .main .excel{
+        display:none;
+    }
+
+    .main.active .excel{
+        display: block;
+    }
+
+    .cardHeader{
+        width: 600px;
+    }
+
+    .table .card-table table{
+        width: 600px;
+    }
+
+    .pager{
+        width: 600px;
+    }
+
+    .address{
+        width: 100%;
+        margin-left: 20px;
+        margin-bottom: 10px;
+    }
+    .social-media{
+        padding-bottom: 10px;
+        margin-left: -160px;
+    }
+}
