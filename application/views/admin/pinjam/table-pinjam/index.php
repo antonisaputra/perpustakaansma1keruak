@@ -9,9 +9,6 @@
 <div class="print">
     <a href="<?= base_url(); ?>Buku_dipinjam/printPinjam"><i class="fas fa-print"></i> Cetak</a>
 </div>
-<div class="excel">
-    <a href="<?= base_url(); ?>Buku_dipinjam/excel"><i class="fas fa-file-excel"></i> Export Excel</a>
-</div>
 
 <div class="table">
     <div class="card-table">
@@ -48,7 +45,8 @@
                         $diff  = $waktuPinjam->diff($waktuSekarang);
                         $waktuPinjamStr = strtotime($p['waktu_kembali']);
                         $waktuSekarangStr = strtotime('now');
-                        $denda = ($diff->days) * 1000;
+                        $waktuTenggat = $diff->days; 
+                        $denda =  intval($waktuTenggat+1) * 1000;
                         ?>
                         <?php if ($waktuSekarangStr < $waktuPinjamStr) : ?>
                             <td><?= 'Rp.0'; ?></td>
@@ -59,7 +57,8 @@
                         <?php endif ?>
                         <td><?= $p['jumlah_buku']; ?></td>
                         <td class="aksi_pinjam">
-                            <a href="<?= base_url(); ?>Buku_dipinjam/bukuDikembalikan/<?= $p['id']; ?>" class="buku_dikembalikan" onmouseover="bukuKembaliHover(this)" onmouseout="bukuKembali(this)" style="text-decoration:none;" style="margin-bottom:5px;">Buku Belum Kembali</a>
+                            <a href="<?= base_url(); ?>Buku_dipinjam/bukuDikembalikan/<?= $p['id']; ?>" class="buku_dikembalikan" onmouseover="bukuKembaliHover(this)" onmouseout="bukuKembali(this)" style="text-decoration:none;margin-bottom:5px;">Buku Belum Kembali</a>
+                            <a href="<?= base_url(); ?>Buku_dipinjam/bukuHilangOrRusak/<?= $p['id'];?>" class="buku_dikembalikan" style="text-decoration:none;margin-bottom:5px;">Buku Hilang Atau Rusak</a>
                             <a href="<?= base_url(); ?>Buku_dipinjam/hapus/<?= $p['id']; ?>" class="hapus hapus-pinjam"><i class="fas fa-trash-alt"></i></a>
                         </td>
                     </tr>

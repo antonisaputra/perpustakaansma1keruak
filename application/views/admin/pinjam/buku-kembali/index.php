@@ -29,6 +29,7 @@
                     <td>Batas Waktu</td>
                     <td>Waktu Dikembalikan</td>
                     <td>Denda</td>
+                    <td>Status Pinjaman Buku</td>
                     <td>Jumlah</td>
                 </tr>
             </thead>
@@ -43,6 +44,7 @@
                         <td><?= $bk['batas_pinjam']; ?></td>
                         <td><?= $bk['waktu_kembali']; ?></td>
                         <td><?= 'Rp.' . number_format($bk['denda']); ?></td>
+                        <td><?= $bk['status_pinjaman'] ?></td>
                         <td><?= $bk['jumlah_buku']; ?></td>
                     </tr>
                 <?php endforeach; ?>

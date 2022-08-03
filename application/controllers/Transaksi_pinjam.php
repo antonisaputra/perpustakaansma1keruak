@@ -54,7 +54,7 @@ class Transaksi_pinjam extends CI_Controller
         }
 
         $this->load->view('admin/tamplates/header', $data);
-        $this->load->view('admin/pinjam/transaksi_pinjam/index', $data);
+        $this->load->view('admin/pinjam/transaksi-pinjam/index', $data);
         $this->load->view('admin/tamplates/footer');
     }
 

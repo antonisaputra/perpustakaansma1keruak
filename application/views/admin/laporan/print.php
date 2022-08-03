@@ -9,7 +9,7 @@
                 <th>Waktu Kembali</th>
                 <th>Jumlah Buku</th>
                 <th>Denda</th>
-                <th>Status Pinjama Buku</th>
+                <th>Status Pijaman Buku</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -47,9 +47,21 @@
             <div class="kembali">
                 <a href="<?= base_url(); ?>Laporan">Kembali</a>
             </div>
+            <?php if(isset($data_bulan)&&isset($data_tahun)): ?>
             <div>
                 <div class="print">
-                    <a href="<?= base_url();?>Laporan/Print/<?= $data_bulan; ?>/<?= $data_tahun; ?>">Print Data Bulan</a>
+                    <a href="<?= base_url();?>Laporan/Print/<?= $data_bulan; ?>/<?= $data_tahun; ?>">Print</a>
                 </div>
             </div>
+            <?php else: ?>
+                <div>
+                    <div class="print">
+                        <a href="<?= base_url();?>Laporan/PrintSemua">Print Semua</a>
+                    </div>
+                </div>
+            <?php endif; ?>
         </div>
+
+        <script>
+            window.print();
+        </script>

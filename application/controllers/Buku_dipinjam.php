@@ -56,22 +56,71 @@ class Buku_dipinjam extends CI_Controller
         $diff  = $waktuPinjam->diff($waktuSekarang);
         $waktuPinjamStr = strtotime($pinjam['waktu_kembali']);
         $waktuSekarangStr = strtotime('now');
-        $denda = ($diff->d) * 1000;
+        $waktutenggat = ($diff->d);
+        $denda = intval($waktutenggat) * 2000;
         if ($waktuSekarangStr < $waktuPinjamStr) {
             $dendaBuku = 0;
+            $statusPinjaman = "Tepat Waktu";
         } elseif ($waktuSekarangStr == $waktuPinjamStr) {
             $dendaBuku = 0;
+            $statusPinjaman = "Tepat Waktu";
         } elseif ($waktuSekarangStr > $waktuPinjamStr) {
             $dendaBuku = $denda;
+            $statusPinjaman = "Denda";
         }
 
-        $this->Buku_dipinjam_model->tambahBukuKembali($id, $dendaBuku);
+        echo $statusPinjaman;die;
+        $this->Buku_dipinjam_model->tambahBukuKembali($id, $dendaBuku, $statusPinjaman);
         $this->Buku_dipinjam_model->ubahDataBuku($getBuku['id'],$pinjam['jumlah_buku'],$getBuku['jumlah_buku']);
         $this->session->set_flashdata('pesan', 'Dikembalikan');
 
         $this->Buku_dipinjam_model->hapusDataPinjam($id);
         redirect('Buku_dipinjam');
     }
+
+    public function bukuHilangOrRusak($id){
+        $getPinjam = $this->Buku_dipinjam_model->getPinjamById($id);
+        $getBuku = $this->db->get_where('buku', ['judul' => $getPinjam['judul_buku']])->row_array();
+
+        // denda
+        $hargaBuku = $this->input->post('hargabuku');
+        date_default_timezone_set('Asia/Ujung_Pandang');
+        $waktuPinjam  = date_create($getPinjam['waktu_kembali']);
+        $waktuSekarang = date_create(); // waktu sekarang
+        $diff  = $waktuPinjam->diff($waktuSekarang);
+        $waktuPinjamStr = strtotime($getPinjam['waktu_kembali']);
+        $waktuSekarangStr = strtotime('now');
+        $waktutenggat = ($diff->d); 
+        $denda = ($diff->d) * 1000;
+
+        $jumlahBuku = $getPinjam['jumlah_buku'];
+        if ($waktuSekarangStr < $waktuPinjamStr) {
+            $dendaBuku = $getPinjam['jumlah_buku']*$hargaBuku;
+            $statusPinjaman = "Buku Hilang Atau Rusak";
+        } elseif ($waktuSekarangStr == $waktuPinjamStr) {
+            $dendaBuku = $getPinjam['jumlah_buku']*$hargaBuku;
+            $statusPinjaman = "Buku Hilang Atau Rusak";
+        } elseif ($waktuSekarangStr > $waktuPinjamStr) {
+            $dendaBuku = $denda+($jumlahBuku*$hargaBuku);
+            $statusPinjaman = "Buku Hilang Atau Rusak Dan Denda";
+        }
+        $this->form_validation->set_rules('hargabuku','Harga Buku','required');
+        
+        if ($this->form_validation->run() == FALSE) {
+            $data['judul'] = "Admin Perpustakaan SMA 1 Keruak | Buku hilang atau rusak";
+            $this->load->view('admin/tamplates/header_form', $data);
+            $this->load->view('admin/pinjam/table-pinjam/bukuhilangataurusak');
+            $this->load->view('admin/tamplates/footer_form');
+        }else{
+            $this->Buku_dipinjam_model->tambahBukuKembali($id, $dendaBuku, $statusPinjaman);
+            $this->Buku_dipinjam_model->ubahDataBuku($getBuku['id'],$getPinjam['jumlah_buku'],$getBuku['jumlah_buku']);
+            $this->session->set_flashdata('pesan', 'Dikembalikan');
+
+            $this->Buku_dipinjam_model->hapusDataPinjam($id);
+            redirect('Buku_dipinjam');
+        }
+    }
+    
 
     public function hapus($id)
     {
@@ -91,53 +140,5 @@ class Buku_dipinjam extends CI_Controller
     }
 
 
-    public function excel()
-    {
-        $data['pinjam'] = $this->Buku_dipinjam_model->getAllPinjam();
-
-        require(APPPATH . 'PHPExcel-1.8/Classes/PHPExcel.php');
-        require(APPPATH . 'PHPExcel-1.8/Classes/PHPExcel/Writer/Excel2007.php');
-
-        $object = new PHPExcel();
-
-        $object->getProperties()->setCreator("Perputakaan SMA 1 Keruak");
-        $object->getProperties()->setLastModifiedBy("Perputakaan SMA 1 Keruak");
-        $object->getProperties()->setTitle("Daftar Pinjam");
-
-        $object->setActiveSheetIndex(0);
-
-        $object->getActiveSheet()->setCellValue('A1', 'No');
-        $object->getActiveSheet()->setCellValue('B1', 'Nama Anggota');
-        $object->getActiveSheet()->setCellValue('C1', 'Judul Buku');
-        $object->getActiveSheet()->setCellValue('E1', 'NIS/NIP');
-        $object->getActiveSheet()->setCellValue('D1', 'Waktu Pinjam');
-        $object->getActiveSheet()->setCellValue('F1', 'Waktu Kembali');
-        $object->getActiveSheet()->setCellValue('G1', 'Jumalah Buku');
-
-        $baris = 2;
-        $no = 1;
-
-        foreach ($data['pinjam'] as $p) {
-            $object->getActiveSheet()->setCellValue('A' . $baris, $no++);
-            $object->getActiveSheet()->setCellValue('B' . $baris, $p['nama_anggota']);
-            $object->getActiveSheet()->setCellValue('C' . $baris, $p['judul_buku']);
-            $object->getActiveSheet()->setCellValue('D' . $baris, $p['nis_nip']);
-            $object->getActiveSheet()->setCellValue('E' . $baris, $p['waktu_pinjam']);
-            $object->getActiveSheet()->setCellValue('F' . $baris, $p['waktu_kembali']);
-            $object->getActiveSheet()->setCellValue('G' . $baris, $p['jumlah_buku']);
-            $baris++;
-        }
-
-        $filename = "Data Pinjam Buku" . '.xlsx';
-        $object->getActiveSheet()->setTitle("Data Pinjam Buku");
-
-        header('Content-Type : application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-        header('Content-Disposition: attachment;filename="' . $filename . '"');
-        header('Cache-Control: max-age=0');
-
-        $writer = PHPExcel_IOFactory::createwriter($object, 'Excel2007');
-        $writer->save('php://output');
-
-        exit;
-    }
+   
 }

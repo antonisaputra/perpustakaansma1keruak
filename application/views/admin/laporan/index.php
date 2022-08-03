@@ -24,10 +24,10 @@
                         </select>
                     </div>
                     <div class="print">
-                        <button type="submit" name="printPerbulan"><i class="fas fa-print"></i> Cetak</button>
+                        <button type="submit" name="printPerbulan"><i class="fas fa-print"></i> Laporan Perbulan</button>
                     </div>
                     <div class="excel">
-                        <a href="<?= base_url(); ?>Laporan/cetakSemua"><i class="fas fa-print"></i> Cetak Semua</a>
+                        <a href="<?= base_url(); ?>Laporan/cetakSemua"><i class="fas fa-print"></i> Semua Laporan</a>
                     </div>
                 </form>
             </div>

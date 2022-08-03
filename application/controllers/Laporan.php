@@ -24,7 +24,9 @@ class Laporan extends CI_Controller{
         $ambiltahun = $this->input->post('tahun');
         $data['bulan'] = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
         $data['laporan'] = $this->Laporan_model->getLaporanPerbulan($ambilbulan,$ambiltahun);
-        $data['judul'] = "Laporan Perpustakaan SMA 1 Keruak Bulan ". $data['bulan'][$ambilbulan-1]; 
+        $data['judul'] = "Laporan Perpustakaan SMA 1 Keruak Bulan ". $data['bulan'][$ambilbulan-1];
+        $data['data_bulan'] = $ambilbulan;
+        $data['data_tahun'] = $ambiltahun; 
 
         $this->load->view('admin/tamplates/header_print', $data);
         $this->load->view('admin/laporan/printperbulan', $data);
@@ -36,7 +38,30 @@ class Laporan extends CI_Controller{
         $data['laporan'] = $this->Laporan_model->getAllLaporan();
 
         $this->load->view('admin/tamplates/header_print', $data);
-        $this->load->view('admin/laporan/printperbulan', $data);
+        $this->load->view('admin/laporan/printsemua', $data);
         $this->load->view('admin/tamplates/footer_print');        
+    }
+
+    public function Print($data_bulan,$data_tahun){
+        $ambilbulan = $data_bulan;
+        $ambiltahun = $data_tahun;
+        $data['bulan'] = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
+        $data['laporan'] = $this->Laporan_model->getLaporanPerbulan($ambilbulan,$ambiltahun);
+        $data['judul'] = "Laporan Perpustakaan SMA 1 Keruak Bulan ". $data['bulan'][$ambilbulan-1];
+        $data['data_bulan'] = $ambilbulan;
+        $data['data_tahun'] = $ambiltahun; 
+
+        $this->load->view('admin/tamplates/header_print', $data);
+        $this->load->view('admin/laporan/print', $data);
+        $this->load->view('admin/tamplates/footer_print');
+    }
+
+    public function printSemua(){
+        $data['judul'] = "Laporan Perpustakaan SMA 1 Keruak";
+        $data['laporan'] = $this->Laporan_model->getAllLaporan();
+
+        $this->load->view('admin/tamplates/header_print', $data);
+        $this->load->view('admin/laporan/print', $data);
+        $this->load->view('admin/tamplates/footer_print'); 
     }
 }

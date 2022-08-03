@@ -25,7 +25,7 @@ class Buku_dipinjam_model extends CI_model
         $this->db->delete('pinjam');
     }
 
-    public function tambahBukuKembali($id, $denda)
+    public function tambahBukuKembali($id, $denda, $statusPinjaman)
     {
         $pinjam = $this->getPinjamById($id);
         $tanggal = date("Y-m-d");
@@ -37,7 +37,8 @@ class Buku_dipinjam_model extends CI_model
             'batas_pinjam' => $pinjam['waktu_kembali'],
             'waktu_kembali' => $tanggal,
             'jumlah_buku' => $pinjam['jumlah_buku'],
-            'denda' => $denda
+            'denda' => $denda,
+            'status_pinjaman' => $statusPinjaman
         );
         // var_dump($data);
 

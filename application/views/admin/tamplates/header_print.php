@@ -7,12 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="<?= base_url();?>assets/img/logo asli.png">
 	<title><?= $judul; ?></title>
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/print_style.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/print_style1.css">
 </head>
 <body>
+<?php if($this->session->flashdata('print')): ?>
 <script>
     window.print();
 </script>
+<?php else:?>
+    <p></p>
+<?php endif; ?>
 <?php if(isset($bulan) && isset($tahun)): ?>
     <h2><?= $judul." ".$bulan; ?></h2>
 <?php endif; ?>

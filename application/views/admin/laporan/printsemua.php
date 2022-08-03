@@ -8,8 +8,8 @@
                 <th>Batas Pinjam</th>
                 <th>Waktu Kembali</th>
                 <th>Jumlah Buku</th>
-                <th>Denda</th>
-                <th>Status Pinjama Buku</th>
+                <th>Denda</th> 
+                <th>Status Pinjaman Buku</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -47,9 +47,10 @@
             <div class="kembali">
                 <a href="<?= base_url(); ?>Laporan">Kembali</a>
             </div>
+
             <div>
                 <div class="print">
-                    <a href="<?= base_url();?>Laporan/Print/<?= $data_bulan; ?>/<?= $data_tahun; ?>">Print Data Bulan</a>
+                    <a href="<?= base_url();?>Laporan/PrintSemua">Print Semua Data</a>
                 </div>
             </div>
         </div>
